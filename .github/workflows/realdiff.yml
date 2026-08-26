@@ -1,0 +1,24 @@
+name: RealDiff
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: issacnitin/RealDiff@v0.4.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REALDIFF_EXCLUDE_NAMESPACES: src/config.py
+        with:
+          gate: warn-only
+          post: 'true'
+          strict: 'true'
