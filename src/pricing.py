@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from .config import should_break_priority_ties_by_code
+from .sorting import by_priority
 
 
 @dataclass(frozen=True)
@@ -9,12 +9,6 @@ class DiscountRule:
     priority: int
     minimum_total: int
     percent_off: int
-
-
-def by_priority(rules):
-    if should_break_priority_ties_by_code():
-        return sorted(rules, key=lambda rule: (rule.priority, rule.code))
-    return sorted(rules, key=lambda rule: rule.priority)
 
 
 def select_discount(list_price):
