@@ -17,7 +17,10 @@ def select_discount(list_price):
         DiscountRule("A_SEASONAL", 10, 50, 15),
         DiscountRule("INELIGIBLE", 10, 1000, 5),
     ]
-    return next(rule for rule in by_priority(rules) if list_price >= rule.minimum_total)
+    for rule in by_priority(rules):
+        if list_price >= rule.minimum_total:
+            return rule
+    raise RuntimeError("no eligible discount")
 
 
 def checkout_total(list_price):
