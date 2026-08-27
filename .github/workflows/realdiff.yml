@@ -17,7 +17,6 @@ jobs:
       - uses: issacnitin/RealDiff@v0.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REALDIFF_EXCLUDE_NAMESPACES: src/sorting.py
         with:
           gate: warn-only
           post: 'true'

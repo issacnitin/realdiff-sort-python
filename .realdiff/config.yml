@@ -1,2 +1,3 @@
+language: python
 exclude_namespaces:
-  - src/config.py
+  - src/sorting.py
